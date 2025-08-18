@@ -6,7 +6,8 @@ package me.petrov.algorithmik.converter;
 
 /**
  *
- * @author Jonkler
+ * @author Samuil Petrov
+ * @author Marcos Esteban Gorena
  */
 public class ConverterJFrame extends javax.swing.JFrame {
     
@@ -28,68 +29,200 @@ public class ConverterJFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        tempUnitRadioGroup = new javax.swing.ButtonGroup();
         converterTabbedPane = new javax.swing.JTabbedPane();
-        temperaturePanel = new javax.swing.JPanel();
-        celsiusRadioButton = new javax.swing.JRadioButton();
-        fahrenheitRadioButton = new javax.swing.JRadioButton();
-        jTextField1 = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        cToFPanel = new javax.swing.JPanel();
+        celsiusInput = new javax.swing.JTextField();
+        celsiusLabel = new javax.swing.JLabel();
+        cToFButton = new javax.swing.JButton();
+        fahrenheitResult = new javax.swing.JLabel();
+        fahrenheitLabel = new javax.swing.JLabel();
+        fToCPanel = new javax.swing.JPanel();
+        fInput = new javax.swing.JTextField();
+        fLabel = new javax.swing.JLabel();
+        fToCButton = new javax.swing.JButton();
+        cResult = new javax.swing.JLabel();
+        cLabel = new javax.swing.JLabel();
         bmiPanel = new javax.swing.JPanel();
+        heightLabel = new javax.swing.JLabel();
+        weightLabel = new javax.swing.JLabel();
+        weightInput = new javax.swing.JTextField();
+        heightInput = new javax.swing.JTextField();
+        bmiButton = new javax.swing.JButton();
+        bmiResultLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Converter");
         setResizable(false);
 
-        tempUnitRadioGroup.add(celsiusRadioButton);
-        celsiusRadioButton.setText("Celsius");
+        celsiusInput.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        celsiusInput.setText("1");
 
-        tempUnitRadioGroup.add(fahrenheitRadioButton);
-        fahrenheitRadioButton.setText("Fahrenheit");
+        celsiusLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        celsiusLabel.setText("°C");
 
-        jLabel1.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
-        jLabel1.setText("Celsius");
+        cToFButton.setFont(new java.awt.Font("Comic Sans MS", 1, 16)); // NOI18N
+        cToFButton.setText("Convert!");
+        cToFButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cToFButtonActionPerformed(evt);
+            }
+        });
 
-        javax.swing.GroupLayout temperaturePanelLayout = new javax.swing.GroupLayout(temperaturePanel);
-        temperaturePanel.setLayout(temperaturePanelLayout);
-        temperaturePanelLayout.setHorizontalGroup(
-            temperaturePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(temperaturePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(temperaturePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(celsiusRadioButton)
-                    .addComponent(fahrenheitRadioButton)
-                    .addGroup(temperaturePanelLayout.createSequentialGroup()
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(76, Short.MAX_VALUE))
+        fahrenheitResult.setFont(new java.awt.Font("Impact", 0, 18)); // NOI18N
+        fahrenheitResult.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        fahrenheitResult.setText("33.8");
+
+        fahrenheitLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        fahrenheitLabel.setText("°F");
+
+        javax.swing.GroupLayout cToFPanelLayout = new javax.swing.GroupLayout(cToFPanel);
+        cToFPanel.setLayout(cToFPanelLayout);
+        cToFPanelLayout.setHorizontalGroup(
+            cToFPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, cToFPanelLayout.createSequentialGroup()
+                .addContainerGap(143, Short.MAX_VALUE)
+                .addGroup(cToFPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(cToFPanelLayout.createSequentialGroup()
+                        .addComponent(fahrenheitResult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fahrenheitLabel))
+                    .addGroup(cToFPanelLayout.createSequentialGroup()
+                        .addGroup(cToFPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(cToFButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(celsiusInput, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(celsiusLabel)))
+                .addGap(132, 132, 132))
         );
-        temperaturePanelLayout.setVerticalGroup(
-            temperaturePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(temperaturePanelLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(temperaturePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 36, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(celsiusRadioButton)
+        cToFPanelLayout.setVerticalGroup(
+            cToFPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(cToFPanelLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(cToFPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(celsiusInput, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(celsiusLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(fahrenheitRadioButton)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addComponent(cToFButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(cToFPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fahrenheitResult, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fahrenheitLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(44, 44, 44))
         );
 
-        converterTabbedPane.addTab("Temperature", temperaturePanel);
+        converterTabbedPane.addTab("°C to °F", cToFPanel);
+
+        fInput.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        fInput.setText("1");
+
+        fLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        fLabel.setText("°F");
+
+        fToCButton.setFont(new java.awt.Font("Comic Sans MS", 1, 16)); // NOI18N
+        fToCButton.setText("Convert!");
+        fToCButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                fToCButtonActionPerformed(evt);
+            }
+        });
+
+        cResult.setFont(new java.awt.Font("Impact", 0, 18)); // NOI18N
+        cResult.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        cResult.setText("-17.22222");
+
+        cLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
+        cLabel.setText("°C");
+
+        javax.swing.GroupLayout fToCPanelLayout = new javax.swing.GroupLayout(fToCPanel);
+        fToCPanel.setLayout(fToCPanelLayout);
+        fToCPanelLayout.setHorizontalGroup(
+            fToCPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fToCPanelLayout.createSequentialGroup()
+                .addContainerGap(143, Short.MAX_VALUE)
+                .addGroup(fToCPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(fToCPanelLayout.createSequentialGroup()
+                        .addComponent(cResult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(cLabel))
+                    .addGroup(fToCPanelLayout.createSequentialGroup()
+                        .addGroup(fToCPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(fToCButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(fInput, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(fLabel)))
+                .addGap(132, 132, 132))
+        );
+        fToCPanelLayout.setVerticalGroup(
+            fToCPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fToCPanelLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addGroup(fToCPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fInput, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(fLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(fToCButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(fToCPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cResult, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(44, 44, 44))
+        );
+
+        converterTabbedPane.addTab("°F to °C", fToCPanel);
+
+        heightLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        heightLabel.setText("Height (m)");
+
+        weightLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 14)); // NOI18N
+        weightLabel.setText("Weight (kg)");
+
+        bmiButton.setFont(new java.awt.Font("Comic Sans MS", 1, 16)); // NOI18N
+        bmiButton.setText("Calculate");
+        bmiButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bmiButtonActionPerformed(evt);
+            }
+        });
+
+        bmiResultLabel.setFont(new java.awt.Font("Impact", 0, 18)); // NOI18N
+        bmiResultLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        bmiResultLabel.setText("Result: ");
 
         javax.swing.GroupLayout bmiPanelLayout = new javax.swing.GroupLayout(bmiPanel);
         bmiPanel.setLayout(bmiPanelLayout);
         bmiPanelLayout.setHorizontalGroup(
             bmiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(bmiPanelLayout.createSequentialGroup()
+                .addGap(80, 80, 80)
+                .addGroup(bmiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(bmiResultLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bmiButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(bmiPanelLayout.createSequentialGroup()
+                        .addGroup(bmiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(weightLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                            .addComponent(heightLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(bmiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(weightInput)
+                            .addComponent(heightInput, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         bmiPanelLayout.setVerticalGroup(
             bmiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 265, Short.MAX_VALUE)
+            .addGroup(bmiPanelLayout.createSequentialGroup()
+                .addGap(34, 34, 34)
+                .addGroup(bmiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(weightLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(weightInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(bmiPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(heightLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(heightInput, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(bmiButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(bmiResultLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(52, Short.MAX_VALUE))
         );
 
         converterTabbedPane.addTab("BMI", bmiPanel);
@@ -108,6 +241,53 @@ public class ConverterJFrame extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bmiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bmiButtonActionPerformed
+        String rawWeight = weightInput.getText().replace(',', '.');
+        String rawHeight = heightInput.getText().replace(',', '.');
+        double weight, height;
+        
+        try {
+            weight = Double.parseDouble(rawWeight);
+            height = Double.parseDouble(rawHeight);
+        } catch (NumberFormatException exception) {
+            bmiResultLabel.setText("Bad input!");
+            return;
+        }
+        
+        double bmi = weight / (height * height);
+        bmiResultLabel.setText("Result: " + String.valueOf(bmi));
+    }//GEN-LAST:event_bmiButtonActionPerformed
+
+    private void cToFButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cToFButtonActionPerformed
+        String rawCelsius = celsiusInput.getText().replace(',', '.');
+        double celsius;
+        
+        try {
+            celsius = Double.parseDouble(rawCelsius);
+        } catch (NumberFormatException exception) {
+            fahrenheitResult.setText("Bad input!");
+            return;
+        }
+        
+        double fahrenheit = (celsius * 9 / 5) + 32;
+        fahrenheitResult.setText(String.valueOf(fahrenheit));
+    }//GEN-LAST:event_cToFButtonActionPerformed
+
+    private void fToCButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fToCButtonActionPerformed
+        String rawFahrenheit = fInput.getText().replace(',', '.');
+        double fahrenheit;
+        
+        try {
+            fahrenheit = Double.parseDouble(rawFahrenheit);
+        } catch (NumberFormatException exception) {
+            cResult.setText("Bad input!");
+            return;
+        }
+        
+        double celsius = (fahrenheit - 32) * 5 / 9;
+        cResult.setText(String.valueOf(celsius));
+    }//GEN-LAST:event_fToCButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,13 +315,25 @@ public class ConverterJFrame extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bmiButton;
     private javax.swing.JPanel bmiPanel;
-    private javax.swing.JRadioButton celsiusRadioButton;
+    private javax.swing.JLabel bmiResultLabel;
+    private javax.swing.JLabel cLabel;
+    private javax.swing.JLabel cResult;
+    private javax.swing.JButton cToFButton;
+    private javax.swing.JPanel cToFPanel;
+    private javax.swing.JTextField celsiusInput;
+    private javax.swing.JLabel celsiusLabel;
     private javax.swing.JTabbedPane converterTabbedPane;
-    private javax.swing.JRadioButton fahrenheitRadioButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.ButtonGroup tempUnitRadioGroup;
-    private javax.swing.JPanel temperaturePanel;
+    private javax.swing.JTextField fInput;
+    private javax.swing.JLabel fLabel;
+    private javax.swing.JButton fToCButton;
+    private javax.swing.JPanel fToCPanel;
+    private javax.swing.JLabel fahrenheitLabel;
+    private javax.swing.JLabel fahrenheitResult;
+    private javax.swing.JTextField heightInput;
+    private javax.swing.JLabel heightLabel;
+    private javax.swing.JTextField weightInput;
+    private javax.swing.JLabel weightLabel;
     // End of variables declaration//GEN-END:variables
 }
