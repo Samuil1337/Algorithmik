@@ -70,7 +70,7 @@ public class ConverterJFrame extends javax.swing.JFrame {
 
         fahrenheitResult.setFont(new java.awt.Font("Impact", 0, 18)); // NOI18N
         fahrenheitResult.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        fahrenheitResult.setText("33.8");
+        fahrenheitResult.setText("33,80");
 
         fahrenheitLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         fahrenheitLabel.setText("°F");
@@ -128,7 +128,7 @@ public class ConverterJFrame extends javax.swing.JFrame {
 
         cResult.setFont(new java.awt.Font("Impact", 0, 18)); // NOI18N
         cResult.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        cResult.setText("-17.22222");
+        cResult.setText("-17,22");
 
         cLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         cLabel.setText("°C");
@@ -186,7 +186,7 @@ public class ConverterJFrame extends javax.swing.JFrame {
 
         bmiResultLabel.setFont(new java.awt.Font("Impact", 0, 18)); // NOI18N
         bmiResultLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        bmiResultLabel.setText("Result: ");
+        bmiResultLabel.setText("Result: 0,00 kg/m²");
 
         javax.swing.GroupLayout bmiPanelLayout = new javax.swing.GroupLayout(bmiPanel);
         bmiPanel.setLayout(bmiPanelLayout);
@@ -256,7 +256,7 @@ public class ConverterJFrame extends javax.swing.JFrame {
         }
         
         double bmi = weight / (height * height);
-        bmiResultLabel.setText("Result: " + String.valueOf(bmi));
+        bmiResultLabel.setText(String.format("Result: %.2f kg/m²", bmi));
     }//GEN-LAST:event_bmiButtonActionPerformed
 
     private void cToFButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cToFButtonActionPerformed
@@ -271,7 +271,7 @@ public class ConverterJFrame extends javax.swing.JFrame {
         }
         
         double fahrenheit = (celsius * 9 / 5) + 32;
-        fahrenheitResult.setText(String.valueOf(fahrenheit));
+        fahrenheitResult.setText(String.format("%.2f", fahrenheit));
     }//GEN-LAST:event_cToFButtonActionPerformed
 
     private void fToCButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fToCButtonActionPerformed
@@ -286,7 +286,7 @@ public class ConverterJFrame extends javax.swing.JFrame {
         }
         
         double celsius = (fahrenheit - 32) * 5 / 9;
-        cResult.setText(String.valueOf(celsius));
+        cResult.setText(String.format("%.2f", celsius));
     }//GEN-LAST:event_fToCButtonActionPerformed
 
     /**
