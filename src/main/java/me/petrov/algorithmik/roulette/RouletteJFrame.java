@@ -13,6 +13,7 @@ public class RouletteJFrame extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RouletteJFrame.class.getName());
     private int numberToGuess;
     private int tries;
+    private static final int DEFAULT_TRIES = 5;
     
     /**
      * Creates new form RouletteJFrame
@@ -23,18 +24,23 @@ public class RouletteJFrame extends javax.swing.JFrame {
     }
     
     private void startNewGame() {
+        // generate new number
         this.numberToGuess = (int) (Math.random() * 100 + 1);
+        
+        // reset UI
         guessInput.setText("");
         checkGuessButton.setEnabled(true);
         guessResultLabel.setText("N/A");
         
-        this.setTries(5);
+        // reset countdown to default
+        this.setTries(DEFAULT_TRIES);
         System.out.println(numberToGuess);
     }
     
     private void setTries(int tries) {
         this.tries = tries;
-        triesLeftLabel.setText(String.valueOf(tries));
+        triesLeftLabel.setText(String.valueOf(tries));  // update counter
+        // auto end on tries exhausted
         if (tries <= 0) {
             guessResultLabel.setText("You lost ;(");
             endGame();
@@ -182,6 +188,11 @@ public class RouletteJFrame extends javax.swing.JFrame {
         } catch (NumberFormatException exception) {
             //guessResultLabel.setText("Input an integer from 1 to 100!!!");
             guessResultLabel.setText("Invalid input!");
+            return;
+        }
+        
+        if (guess < 0 || guess > 100) {
+            guessResultLabel.setText("0 < x < 100");
             return;
         }
         
