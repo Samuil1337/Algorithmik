@@ -6,7 +6,8 @@ package me.petrov.algorithmik.calculator;
 
 /**
  *
- * @author samuil.petrov
+ * @author Samuil Petrov
+ * @author Marcos Esteban Gorena
  */
 public class CalculatorJFrame extends javax.swing.JFrame {
 
@@ -38,7 +39,7 @@ public class CalculatorJFrame extends javax.swing.JFrame {
         setTitle("Calculator");
         setResizable(false);
 
-        titleLabel.setFont(new java.awt.Font("Impact", 0, 24)); // NOI18N
+        titleLabel.setFont(new java.awt.Font("Impact", 0, 36)); // NOI18N
         titleLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titleLabel.setText("Calculator");
         titleLabel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -55,13 +56,13 @@ public class CalculatorJFrame extends javax.swing.JFrame {
             }
         });
 
-        inputAHint.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        inputAHint.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         inputAHint.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        inputAHint.setText("Input a here: ");
+        inputAHint.setText("Input a here:");
 
-        inputBHint.setFont(new java.awt.Font("Comic Sans MS", 0, 12)); // NOI18N
+        inputBHint.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         inputBHint.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        inputBHint.setText("Input b here: ");
+        inputBHint.setText("Input b here:");
 
         calculateButton.setFont(new java.awt.Font("Impact", 0, 14)); // NOI18N
         calculateButton.setText("Calculate!");
@@ -83,31 +84,31 @@ public class CalculatorJFrame extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(inputBHint, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(inputAHint))
-                                .addGap(16, 16, 16)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(inputA, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                                    .addComponent(inputB)))
-                            .addComponent(calculateButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(0, 106, Short.MAX_VALUE))
+                        .addComponent(titleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 393, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(resultLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(101, 101, 101)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(inputBHint, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(inputAHint))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(inputA, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                            .addComponent(inputB)))
+                    .addComponent(calculateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
+                .addComponent(titleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(inputAHint)
                     .addComponent(inputA, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -119,7 +120,7 @@ public class CalculatorJFrame extends javax.swing.JFrame {
                 .addComponent(calculateButton, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(resultLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
 
         pack();
