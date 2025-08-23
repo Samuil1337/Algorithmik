@@ -6,6 +6,8 @@ package me.petrov.algorithmik;
 
 import me.petrov.algorithmik.helloworld.*;
 import me.petrov.algorithmik.converter.*;
+import me.petrov.algorithmik.roulette.*;
+import me.petrov.algorithmik.calculator.*;
 
 
 /**
@@ -17,7 +19,9 @@ public class Algorithmik {
 
     public static void main(String[] args) {
         //HelloWorldJFrame gui = new HelloWorldJFrame();
-        ConverterJFrame gui = new ConverterJFrame();
+        //ConverterJFrame gui = new ConverterJFrame();
+        //RouletteJFrame gui = new RouletteJFrame();
+        CalculatorJFrame gui = new CalculatorJFrame();
         gui.setVisible(true);
     }
 }
