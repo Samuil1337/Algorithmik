@@ -11,6 +11,7 @@ package me.petrov.algorithmik.roulette;
 public class RouletteJFrame extends javax.swing.JFrame {
     
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(RouletteJFrame.class.getName());
+    private int lastGuess;
     private int numberToGuess;
     private int tries;
     private static final int DEFAULT_TRIES = 5;
@@ -24,6 +25,8 @@ public class RouletteJFrame extends javax.swing.JFrame {
     }
     
     private void startNewGame() {
+        this.lastGuess = -1;
+        
         // generate new number
         this.numberToGuess = (int) (Math.random() * 100 + 1);
         
@@ -196,6 +199,10 @@ public class RouletteJFrame extends javax.swing.JFrame {
             return;
         }
         
+        if (guess == lastGuess){
+            return;
+        }
+        
         if (guess == numberToGuess) {
             guessResultLabel.setText("YOU'RE WINNER!!");
             this.endGame();
@@ -206,6 +213,7 @@ public class RouletteJFrame extends javax.swing.JFrame {
             guessResultLabel.setText("Target is less!");
         }
         
+        this.lastGuess = guess;
         this.setTries(this.tries - 1);
     }//GEN-LAST:event_checkGuessButtonActionPerformed
 
