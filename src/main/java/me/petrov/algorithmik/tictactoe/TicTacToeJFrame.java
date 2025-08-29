@@ -4,6 +4,9 @@
  */
 package me.petrov.algorithmik.tictactoe;
 
+import java.util.ArrayList;
+import javax.swing.JButton;
+
 /**
  *
  * @author samuil.petrov
@@ -12,22 +15,80 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
 
     private enum Player {
         First, Second;
+        
+        public char getSymbol() {
+            return switch(this) {
+                case First -> 'X';
+                case Second -> 'O';
+            };
+        }
+        
+        public Player nextPlayer() {
+            return switch(this) {
+                case First -> Second;
+                case Second -> First;
+            };
+        }
     }
     
-    private final javax.swing.JButton[][] fieldButtons;
-    private Player turn = Player.First;
+    private final JButton[][] fieldButtons;
+    private Player currentPlayer = Player.First;
+    private boolean gameOver = false;
     
     /**
      * Creates new form TicTacToeJFrame
      */
     public TicTacToeJFrame() {
         initComponents();
-        fieldButtons = new javax.swing.JButton[][]{
-            { field0, field0, field1 },
-            { field2, field3, field4 },
-            { field5, field6, field7 }
+        fieldButtons = new JButton[][]{
+            { field0, field1, field2 },
+            { field3, field4, field5 },
+            { field6, field7, field8 }
         };
+        startNewGame();
+    }
+    
+    private void startNewGame() {
+        for (JButton[] buttonRow : fieldButtons) {
+            for (JButton fieldButton : buttonRow) {
+                fieldButton.setEnabled(true);
+                fieldButton.setText("   ");
+            }
+        }
+    }
+    
+    private void selectSquare(JButton button) {
+        button.setEnabled(false);
+        button.setText(String.valueOf(currentPlayer.getSymbol()));
+    }
+    
+    private boolean checkGameOver() {
+        // top-left to bottom-right check
+        ArrayList diagLeftToRight = new ArrayList<String>();
+        for (int i = 0; i < fieldButtons.length; i++) {
+            if (fieldButtons[i].length != fieldButtons.length) {
+                break;
+            }
+            JButton button = fieldButtons[i][i];
+            diagLeftToRight.add(button.getText());
+        }
+        diagLeftToRight.forEach( test -> {
         
+        });
+        
+        //fieldButtons.
+        
+        // top-right to bottom-left check
+        ArrayList diagRightToLeft = new ArrayList<String>();
+        for (int i = 0; i < fieldButtons.length; i++) {
+            if (fieldButtons[i].length != fieldButtons.length) {
+                break;
+            }
+            JButton button = fieldButtons[i][fieldButtons[i].length - i - 1];
+            diagRightToLeft.add(button.getText());
+        }
+        
+        return true;
     }
 
     /**
@@ -177,11 +238,11 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void field6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field6ActionPerformed
-        // TODO add your handling code here:
+        selectSquare(field6);
     }//GEN-LAST:event_field6ActionPerformed
 
     private void restartButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_restartButtonActionPerformed
-        // TODO add your handling code here:
+        this.startNewGame();
     }//GEN-LAST:event_restartButtonActionPerformed
 
     private void field0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_field0ActionPerformed
