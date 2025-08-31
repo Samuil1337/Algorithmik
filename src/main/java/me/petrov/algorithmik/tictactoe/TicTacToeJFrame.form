@@ -35,25 +35,25 @@
               <EmptySpace min="-2" pref="82" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="fieldA3" min="-2" pref="67" max="-2" attributes="0"/>
+                      <Component id="squareA3" min="-2" pref="67" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="fieldB3" min="-2" pref="67" max="-2" attributes="0"/>
+                      <Component id="squareB3" min="-2" pref="67" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="fieldC3" min="-2" pref="67" max="-2" attributes="0"/>
+                      <Component id="squareC3" min="-2" pref="67" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="fieldA1" min="-2" pref="67" max="-2" attributes="0"/>
+                      <Component id="squareA1" min="-2" pref="67" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="fieldB1" min="-2" pref="67" max="-2" attributes="0"/>
+                      <Component id="squareB1" min="-2" pref="67" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="fieldC1" min="-2" pref="67" max="-2" attributes="0"/>
+                      <Component id="squareC1" min="-2" pref="67" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <Component id="fieldA2" min="-2" pref="67" max="-2" attributes="0"/>
+                      <Component id="squareA2" min="-2" pref="67" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="fieldB2" min="-2" pref="67" max="-2" attributes="0"/>
+                      <Component id="squareB2" min="-2" pref="67" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="fieldC2" min="-2" pref="67" max="-2" attributes="0"/>
+                      <Component id="squareC2" min="-2" pref="67" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace pref="81" max="32767" attributes="0"/>
@@ -67,21 +67,21 @@
               <Component id="titleLabel" min="-2" pref="40" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="fieldA1" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="fieldB1" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="fieldC1" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="squareA1" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="squareB1" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="squareC1" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="fieldA2" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="fieldB2" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="fieldC2" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="squareA2" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="squareB2" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="squareC2" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="fieldA3" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="fieldB3" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="fieldC3" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="squareA3" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="squareB3" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="squareC3" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="50" max="32767" attributes="0"/>
           </Group>
@@ -103,68 +103,95 @@
         </Property>
       </Properties>
     </Component>
-    <Component class="javax.swing.JButton" name="fieldA1">
+    <Component class="javax.swing.JButton" name="squareA1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Comic Sans MS" size="18" style="1"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="squareA1ActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="fieldA2">
+    <Component class="javax.swing.JButton" name="squareA2">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Comic Sans MS" size="18" style="1"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="squareA2ActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="fieldA3">
+    <Component class="javax.swing.JButton" name="squareA3">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Comic Sans MS" size="18" style="1"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="squareA3ActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="fieldB1">
+    <Component class="javax.swing.JButton" name="squareB1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Comic Sans MS" size="18" style="1"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="squareB1ActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="fieldB2">
+    <Component class="javax.swing.JButton" name="squareB2">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Comic Sans MS" size="18" style="1"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="squareB2ActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="fieldB3">
+    <Component class="javax.swing.JButton" name="squareB3">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Comic Sans MS" size="18" style="1"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="squareB3ActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="fieldC1">
+    <Component class="javax.swing.JButton" name="squareC1">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Comic Sans MS" size="18" style="1"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="squareC1ActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="fieldC2">
+    <Component class="javax.swing.JButton" name="squareC2">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Comic Sans MS" size="18" style="1"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="squareC2ActionPerformed"/>
+      </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="fieldC3">
+    <Component class="javax.swing.JButton" name="squareC3">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Comic Sans MS" size="18" style="1"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="squareC3ActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>

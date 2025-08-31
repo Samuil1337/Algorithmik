@@ -8,6 +8,7 @@ import me.petrov.algorithmik.helloworld.*;
 import me.petrov.algorithmik.converter.*;
 import me.petrov.algorithmik.roulette.*;
 import me.petrov.algorithmik.calculator.*;
+import me.petrov.algorithmik.tictactoe.*;
 
 
 /**
@@ -21,7 +22,8 @@ public class Algorithmik {
         //HelloWorldJFrame gui = new HelloWorldJFrame();
         //ConverterJFrame gui = new ConverterJFrame();
         //RouletteJFrame gui = new RouletteJFrame();
-        CalculatorJFrame gui = new CalculatorJFrame();
+        //CalculatorJFrame gui = new CalculatorJFrame();
+        TicTacToeJFrame gui = new TicTacToeJFrame();
         gui.setVisible(true);
     }
 }
