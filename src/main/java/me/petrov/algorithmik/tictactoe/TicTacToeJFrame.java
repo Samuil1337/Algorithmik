@@ -23,6 +23,13 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
             };
         }
         
+        public GameState getWinState() {
+            return switch(this) {
+                case FIRST -> GameState.FIRST_WIN;
+                case SECOND -> GameState.SECOND_WIN;
+            };
+        }
+
         public Player nextPlayer() {
             return switch(this) {
                 case FIRST -> SECOND;
@@ -38,13 +45,6 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
             return switch(this) {
                 case RUNNING -> false;
                 default -> true;
-            };
-        }
-        
-        public static GameState getWinState(Player player) {
-            return switch(player) {
-                case Player.FIRST -> FIRST_WIN;
-                case Player.SECOND -> SECOND_WIN;
             };
         }
         
@@ -187,13 +187,13 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         // top-left to bottom-right check
         winner = checkLine(diagTLBRSquares);
         if (winner != null) {
-            return GameState.getWinState(winner);
+            return winner.getWinState();
         }
         
         // top-right to bottom-left check
         winner = checkLine(diagTRBLSquares);
         if (winner != null) {
-            return GameState.getWinState(winner);
+            return winner.getWinState();
         }
         
         // horizontal check
@@ -220,7 +220,7 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         for (JButton[] line : squares) {
             Player winner = checkLine(line);
             if (winner != null) {
-                return GameState.getWinState(winner);
+                return winner.getWinState();
             }
         }
         
