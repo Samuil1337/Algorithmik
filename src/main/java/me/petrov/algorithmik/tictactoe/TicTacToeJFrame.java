@@ -13,9 +13,19 @@ import javax.swing.JOptionPane;
  */
 public class TicTacToeJFrame extends javax.swing.JFrame {
     
+    /**
+     * Represents the players of the game.
+     * Provides useful methods to standardize the game's flow.
+     */
     private enum Player {
-        FIRST, SECOND;
+        /** The player that comes first and uses X */
+        FIRST,
+        /** The player that comes second and uses O */
+        SECOND;
         
+        /**
+         * Returns the char each Player writes on the board.
+         */
         public char getSymbol() {
             return switch(this) {
                 case FIRST -> 'X';
@@ -23,6 +33,9 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
             };
         }
         
+        /**
+         * Returns the GameState representing the victory of the Player.
+         */
         public GameState getWinState() {
             return switch(this) {
                 case FIRST -> GameState.FIRST_WIN;
@@ -30,6 +43,9 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
             };
         }
 
+        /**
+         * Returns the Player that would be on next turn relative to this Player.
+         */
         public Player nextPlayer() {
             return switch(this) {
                 case FIRST -> SECOND;
@@ -38,9 +54,30 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Represents each phase of the game for a consistent game flow.
+     */
     private enum GameState {
-        PENDING, RUNNING, STALEMATE, FIRST_WIN, SECOND_WIN;
+        /**
+         * The GameState only set on initialization of the global gameState.
+         * This is more of a placeholder so that the attribute doesn't have to be null.
+         * Therefore, you should not use it after the constructor.
+         */
+        PENDING,
+        /** Represents an unfinished game. */
+        RUNNING,
+        /** Represents a draw where no line is connect and no fields are free. */
+        STALEMATE,
+        /** Represents the victory of the first player. */
+        FIRST_WIN,
+        /** Represents the victory of the second player. */
+        SECOND_WIN;
         
+        /**
+         * A GameState is over when it is not a running game.
+         * Useful as this Enum replaces the gameOver Boolean.
+         * @return Whether the game is running or not
+         */
         public boolean isOver() {
             return switch(this) {
                 case RUNNING -> false;
@@ -48,6 +85,10 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
             };
         }
         
+        /**
+         * Provides a message that describes the current game state.
+         * Useful for declaring the outcome.
+         */
         public String getMessage() {
             return switch(this) {
                 case PENDING -> "Game has not been started";
@@ -62,9 +103,13 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TicTacToeJFrame.class.getName());
     private Player currentPlayer = Player.FIRST;
     private GameState gameState = GameState.PENDING;
+    /** A matrix of fields representing the board */
     private final JButton[][] squares;
+    /** A matrix representing the board with rows and columns switched */
     private final JButton[][] transposedSquares;
+    /** The top-left to bottom-right diagonal fields */
     private final JButton[] diagTLBRSquares;
+    /** The top-right to bottom-left diagonal fields */
     private final JButton[] diagTRBLSquares;
 
     /**
@@ -85,6 +130,11 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         this.setGameState(GameState.RUNNING);
     }
     
+    /**
+     * Switches the rows and columns of an board.
+     * @param squares The input to transpose
+     * @return 2D array with rows and columns switched from input
+     */
     private JButton[][] transposeSquares(JButton[][] squares) {
         // TODO(Samuil): This assumes that the array is not null or empty
         int rows = squares.length;
@@ -99,6 +149,12 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         return result;
     }
     
+    /**
+     * Creates an array of squares
+     * that run diagonally from top left to bottom right on the given board.
+     * @param squares The input matrix
+     * @return The JButtons on the diagonal
+     */
     private JButton[] getTopLeftToBottomRightSquares(JButton[][] squares) {
         // TODO(Samuil): This assumes that the array is not null
         JButton[] result = new JButton[squares.length];
@@ -112,6 +168,12 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         return result;
     }
     
+    /**
+     * Creates an array of squares
+     * that run diagonally from top right to bottom left on the given board.
+     * @param squares The input matrix
+     * @return The JButtons on the diagonal
+     */
     private JButton[] getTopRightToBottomLeftSquares(JButton[][] squares) {
         // TODO(Samuil): This assumes that the array is not null
         JButton[] result = new JButton[squares.length];
@@ -125,6 +187,10 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         return result;
     }
     
+    /**
+     * Sets the #gameState variable and manipulates the game accordingly.
+     * @param gameState The new GameState
+     */
     private void setGameState(GameState gameState) {
         // prevent NPE
         if (gameState == null) {
@@ -137,12 +203,16 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         
         this.gameState = gameState;
         
+        // execute action according to new GameState
         switch (gameState) {
             case GameState.RUNNING -> startNewGame();
             default -> endGame(gameState.getMessage());
         }
     }
     
+    /**
+     * Resets the board and prepares the game for playing.
+     */
     private void startNewGame() {
         // reset fields
         for (JButton[] squareRow : this.squares) {
@@ -156,6 +226,10 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         this.currentPlayer = Player.FIRST;
     }
     
+    /**
+     * Discloses game over in pop-up and restarts game after acknowledgment.
+     * @param message The message to print in the Dialog
+     */
     private void endGame(String message) {
         // disable all buttons to prevent modification after ending
         for (JButton[] squareRow : this.squares) {
@@ -168,6 +242,10 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         setGameState(GameState.RUNNING);
     }
     
+    /**
+     * Selects the square in the UI while also progressing the game.
+     * @param square The square to block and draw the players symbol on
+     */
     private void selectSquare(JButton square) {
         // select button
         square.setEnabled(false);
@@ -180,6 +258,10 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         setGameState(checkGameState());
     }
     
+    /**
+     * Checks the current state of the Tic Tac Toe game.
+     * @return The current GameState
+     */
     private GameState checkGameState() {
         Player winner;
         GameState state;
@@ -216,6 +298,11 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         return GameState.RUNNING;
     }
     
+    /**
+     * Checks the rows of a 2D array for a full line by one player.
+     * @param squares The matrix to scan
+     * @return Either a Player's WinState or null if no continuous line was detected
+     */
     private GameState checkLines(JButton[][] squares) {
         for (JButton[] line : squares) {
             Player winner = checkLine(line);
@@ -227,6 +314,11 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         return null;
     }
     
+    /**
+     * Checks if all buttons are marked by the same player.
+     * @param squares The line to check
+     * @return Either a Player or null if no continuous line was detected
+     */
     private Player checkLine(JButton[] squares) {
         // catch if diag lines were disabled
         if (squares == null || squares.length == 0) {
@@ -250,6 +342,11 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         return null;
     }
     
+    /**
+     * Checks whether all fields are occupied.
+     * @param squares The matrix to scan
+     * @return True if it's a draw
+     */
     private boolean checkStalemate(JButton[][] squares) {
         boolean stalemate = true;
         for (JButton[] fieldRow : squares) {
