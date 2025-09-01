@@ -264,7 +264,6 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
      */
     private GameState checkGameState() {
         Player winner;
-        GameState state;
         
         // top-left to bottom-right check
         winner = checkLine(diagTLBRSquares);
@@ -279,15 +278,15 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         }
         
         // horizontal check
-        state = checkLines(squares);
-        if (state != null) {
-            return state;
+        winner = checkLines(squares);
+        if (winner != null) {
+            return winner.getWinState();
         }
         
         // vertical check
-        state = checkLines(transposedSquares);
-        if (state != null) {
-            return state;
+        winner = checkLines(transposedSquares);
+        if (winner != null) {
+            return winner.getWinState();
         }
         
         // check stalemate
@@ -301,13 +300,13 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
     /**
      * Checks the rows of a 2D array for a full line by one player.
      * @param squares The matrix to scan
-     * @return Either a Player's WinState or null if no continuous line was detected
+     * @return Either a Player or null if no continuous line was detected
      */
-    private GameState checkLines(JButton[][] squares) {
+    private Player checkLines(JButton[][] squares) {
         for (JButton[] line : squares) {
             Player winner = checkLine(line);
             if (winner != null) {
-                return winner.getWinState();
+                return winner;
             }
         }
         
