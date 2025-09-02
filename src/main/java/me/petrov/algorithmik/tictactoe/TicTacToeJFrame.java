@@ -135,7 +135,7 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         this.diagTRBLSquares = getTopRightToBottomLeftSquares(squares);
         
         // configure UI
-        installArrowKeyBinds();
+        installKeyboardControls();
         
         this.setGameState(GameState.RUNNING);
     }
@@ -257,8 +257,11 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
      * @param square The square to block and draw the players symbol on
      */
     private void selectSquare(JButton square) {
+        if (!square.getText().isBlank()) {
+            return;
+        }
+        
         // select button
-        square.setEnabled(false);
         square.setText(String.valueOf(currentPlayer.getSymbol()));
         
         // switch player
@@ -369,7 +372,11 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         return stalemate;
     }
     
-    private void installArrowKeyBinds() {
+    /**
+     * Creates bindings for moving between the buttons with the arrow keys
+     * and selecting a square with the enter key.
+     */
+    private void installKeyboardControls() {
         int rows = squares.length;
         int cols = squares[0].length;
         
@@ -380,15 +387,26 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
                 InputMap im = square.getInputMap(JComponent.WHEN_FOCUSED);
                 ActionMap am = square.getActionMap();
                 
+                // arrow keys move focus
                 im.put(KeyStroke.getKeyStroke("UP"), "moveUp");
                 im.put(KeyStroke.getKeyStroke("DOWN"), "moveDown");
                 im.put(KeyStroke.getKeyStroke("LEFT"), "moveLeft");
                 im.put(KeyStroke.getKeyStroke("RIGHT"), "moveRight");
+                // enter performs click
+                im.put(KeyStroke.getKeyStroke("ENTER"), "click");
                 
+                // arrow keys move focus
                 am.put("moveUp", moveAction(r - 1, c));
                 am.put("moveDown", moveAction(r + 1, c));
                 am.put("moveLeft", moveAction(r, c - 1));
                 am.put("moveRight", moveAction(r, c + 1));
+                // enter performs click
+                am.put("click", new AbstractAction() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        square.doClick();
+                    }
+                });
             }
         }
     }
