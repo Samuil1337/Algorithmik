@@ -26,30 +26,22 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
      */
     private enum Player {
         /** The player that comes first and uses X */
-        FIRST,
+        FIRST('X', GameState.FIRST_WIN),
         /** The player that comes second and uses O */
-        SECOND;
+        SECOND('O', GameState.SECOND_WIN);
         
-        /**
-         * Returns the char each Player writes on the board.
-         */
-        public char getSymbol() {
-            return switch(this) {
-                case FIRST -> 'X';
-                case SECOND -> 'O';
-            };
+        /** The symbol the Player draws on the board */
+        private final char symbol;
+        /** The game state that represent the victory of the Player */
+        private final GameState winState;
+        /** The games the Player has won */
+        private int wins = 0;
+        
+        Player(char symbol, GameState winState) {
+            this.symbol = symbol;
+            this.winState = winState;
         }
         
-        /**
-         * Returns the GameState representing the victory of the Player.
-         */
-        public GameState getWinState() {
-            return switch(this) {
-                case FIRST -> GameState.FIRST_WIN;
-                case SECOND -> GameState.SECOND_WIN;
-            };
-        }
-
         /**
          * Returns the Player that would be on next turn relative to this Player.
          */
@@ -58,6 +50,34 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
                 case FIRST -> SECOND;
                 case SECOND -> FIRST;
             };
+        }
+        
+        /**
+         * Returns the char each Player writes on the board.
+         */
+        public char getSymbol() {
+            return this.symbol;
+        }
+        
+        /**
+         * Returns the GameState representing the victory of the Player.
+         */
+        public GameState getWinState() {
+            return this.winState;
+        }
+        
+        /**
+         * Returns the current win count of the player.
+         */
+        public int getWins() {
+            return this.wins;
+        }
+        
+        /**
+         * Adds 1 to the current win count of the player.
+         */
+        public void incrementWins() {
+            this.wins += 1;
         }
     }
     
@@ -215,9 +235,14 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         
         // execute action according to new GameState
         switch (gameState) {
-            case GameState.RUNNING -> startNewGame();
-            default -> endGame(gameState.getMessage());
+            case GameState.RUNNING -> {
+                startNewGame();
+                return;
+            }
+            case GameState.FIRST_WIN -> Player.FIRST.incrementWins();
+            case GameState.SECOND_WIN -> Player.SECOND.incrementWins();
         }
+        endGame(gameState.getMessage());
     }
     
     /**
