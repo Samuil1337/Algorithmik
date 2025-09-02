@@ -90,26 +90,31 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
          * This is more of a placeholder so that the attribute doesn't have to be null.
          * Therefore, you should not use it after the constructor.
          */
-        PENDING,
+        PENDING(true, "Game has not been started"),
         /** Represents an unfinished game. */
-        RUNNING,
+        RUNNING(false, "Game is still running"),
         /** Represents a draw where no line is connect and no fields are free. */
-        STALEMATE,
+        STALEMATE(true, "It's a draw"),
         /** Represents the victory of the first player. */
-        FIRST_WIN,
+        FIRST_WIN(true, "Player 1 wins!"),
         /** Represents the victory of the second player. */
-        SECOND_WIN;
+        SECOND_WIN(true, "Player 2 wins!");
+        
+        private final boolean gameOver;
+        private final String message;
+        
+        GameState(boolean over, String message) {
+            this.gameOver = over;
+            this.message = message;
+        }
         
         /**
          * A GameState is over when it is not a running game.
          * Useful as this Enum replaces the gameOver Boolean.
          * @return Whether the game is running or not
          */
-        public boolean isOver() {
-            return switch(this) {
-                case RUNNING -> false;
-                default -> true;
-            };
+        public boolean isGameOver() {
+            return this.gameOver;
         }
         
         /**
@@ -117,13 +122,7 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
          * Useful for declaring the outcome.
          */
         public String getMessage() {
-            return switch(this) {
-                case PENDING -> "Game has not been started";
-                case RUNNING -> "Game is still running";
-                case STALEMATE -> "It's a draw";
-                case FIRST_WIN -> Player.FIRST.getSymbol() + " wins!";
-                case SECOND_WIN -> Player.SECOND.getSymbol() + " wins!";
-            };
+            return this.message;
         }
     }
     
@@ -227,7 +226,7 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
             return;
         }
         // makes sure you can't end the game again while its ended and the other way around
-        if (this.gameState.isOver() == gameState.isOver()) {
+        if (this.gameState.isGameOver() == gameState.isGameOver()) {
             return;
         }
         
