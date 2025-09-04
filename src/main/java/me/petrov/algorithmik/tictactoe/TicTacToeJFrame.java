@@ -238,12 +238,12 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         
         // execute action according to new GameState
         switch (gameState) {
-            case GameState.RUNNING -> {
+            case RUNNING -> {
                 startNewGame();
                 return;
             }
-            case GameState.FIRST_WIN -> Player.FIRST.incrementWins();
-            case GameState.SECOND_WIN -> Player.SECOND.incrementWins();
+            case FIRST_WIN -> Player.FIRST.incrementWins();
+            case SECOND_WIN -> Player.SECOND.incrementWins();
         }
         endGame(gameState.getMessage());
     }
