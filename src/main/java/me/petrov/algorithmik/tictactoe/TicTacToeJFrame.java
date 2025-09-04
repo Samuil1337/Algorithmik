@@ -90,22 +90,20 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
          * This is more of a placeholder so that the attribute doesn't have to be null.
          * Therefore, you should not use it after the constructor.
          */
-        PENDING(true, "Game has not been started"),
+        PENDING(true),
         /** Represents an unfinished game. */
-        RUNNING(false, "Game is still running"),
+        RUNNING(false),
         /** Represents a draw where no line is connect and no fields are free. */
-        STALEMATE(true, "It's a draw"),
+        STALEMATE(true),
         /** Represents the victory of the first player. */
-        FIRST_WIN(true, "Player 1 wins!"),
+        FIRST_WIN(true),
         /** Represents the victory of the second player. */
-        SECOND_WIN(true, "Player 2 wins!");
+        SECOND_WIN(true);
         
         private final boolean gameOver;
-        private final String message;
         
-        GameState(boolean over, String message) {
+        GameState(boolean over) {
             this.gameOver = over;
-            this.message = message;
         }
         
         /**
@@ -122,7 +120,13 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
          * Useful for declaring the outcome.
          */
         public String getMessage() {
-            return this.message;
+            return switch(this) {
+                case PENDING -> "Game has not been started";
+                case RUNNING -> "Game is still running";
+                case STALEMATE -> "It's a draw";
+                case FIRST_WIN -> Player.FIRST.getSymbol() + " wins!";
+                case SECOND_WIN -> Player.SECOND.getSymbol() + " wins!";
+            };
         }
     }
     
