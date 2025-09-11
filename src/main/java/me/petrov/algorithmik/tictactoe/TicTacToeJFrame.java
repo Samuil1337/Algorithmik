@@ -4,13 +4,16 @@
  */
 package me.petrov.algorithmik.tictactoe;
 
+import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.util.Hashtable;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ActionMap;
 import javax.swing.InputMap;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
@@ -34,6 +37,8 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         private final char symbol;
         /** The game state that represent the victory of the Player */
         private final GameState winState;
+        /** Whether the AI was toggled for this instance */
+        private boolean ai = false;
         /** The games the Player has won */
         private int wins = 0;
         
@@ -64,6 +69,17 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
          */
         public GameState getWinState() {
             return this.winState;
+        }
+        
+        public boolean isAI() {
+            return this.ai;
+        }
+        
+        public void setAI(boolean ai) {
+            this.ai = ai;
+            if (this == currentPlayer) {
+                
+            }
         }
         
         /**
@@ -137,9 +153,43 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         }
     }
     
+    /**
+     * Represents the intelligence of the AI.
+     */
+    private enum Difficulty {
+        EASY(0, "Easy", "The AI plays randomly"),
+        MEDIUM(1, "Medium", "The AI plays randomly and takes/prevents immediate win"),
+        HARD(2, "Hard", "The AI generates the optimal plays");
+        
+        /** The description used as a tool tip in the slider */
+        private final int index;
+        private final String name;
+        private final String description;
+
+        Difficulty(int index, String name, String description) {
+            this.index = index;
+            this.name = name;
+            this.description = description;
+        }
+        
+        public int getIndex() {
+            return this.index;
+        }
+        
+        public String getName() {
+            return this.name;
+        }
+        
+        public String getDescription() {
+            return this.description;
+        }
+        
+    }
+    
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(TicTacToeJFrame.class.getName());
-    private Player currentPlayer = Player.FIRST;
-    private GameState gameState = GameState.PENDING;
+    private static Player currentPlayer = Player.FIRST;
+    private static GameState gameState = GameState.PENDING;
+    private static Difficulty aiDifficulty = Difficulty.EASY;
     /** A matrix of fields representing the board */
     private final JButton[][] squares;
     /** A matrix representing the board with rows and columns switched */
@@ -166,6 +216,7 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         
         // configure UI
         installKeyboardControls();
+        installAISliderText();
         
         this.setGameState(GameState.RUNNING);
     }
@@ -466,6 +517,26 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
             }
         };
     }
+    
+    private void installAISliderText() {
+        aiDifficultySlider.setMajorTickSpacing(1);
+        
+        aiDifficultySlider.setValue(aiDifficulty.getIndex());
+        
+        Hashtable<Integer, JLabel> labels = new Hashtable<>();
+        for (Difficulty difficulty : Difficulty.values()) {
+            JLabel label = new JLabel(difficulty.getName());
+            label.setFont(new Font("Comic Sans MS", 0, 10));
+            labels.put(difficulty.getIndex(), label);
+        }
+            
+        aiDifficultySlider.setLabelTable(labels);
+        
+        aiDifficultySlider.setToolTipText(Difficulty
+                .values()[aiDifficultySlider.getValue()]
+                .getDescription()
+        );
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -626,6 +697,11 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         aiToggle.setText("Enable AI");
         aiToggle.setFocusable(false);
         aiToggle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        aiToggle.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                aiToggleActionPerformed(evt);
+            }
+        });
 
         aiDifficultySlider.setMaximum(2);
         aiDifficultySlider.setPaintLabels(true);
@@ -634,6 +710,11 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         aiDifficultySlider.setToolTipText("AI difficulty");
         aiDifficultySlider.setValue(0);
         aiDifficultySlider.setFocusable(false);
+        aiDifficultySlider.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                aiDifficultySliderStateChanged(evt);
+            }
+        });
 
         javax.swing.GroupLayout aiPanelLayout = new javax.swing.GroupLayout(aiPanel);
         aiPanel.setLayout(aiPanelLayout);
@@ -782,6 +863,15 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
     private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
         setGameState(GameState.CANCELED);
     }//GEN-LAST:event_resetButtonActionPerformed
+
+    private void aiDifficultySliderStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_aiDifficultySliderStateChanged
+        aiDifficulty = Difficulty.values()[aiDifficultySlider.getValue()];
+        aiDifficultySlider.setToolTipText(aiDifficulty.getDescription());
+    }//GEN-LAST:event_aiDifficultySliderStateChanged
+
+    private void aiToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aiToggleActionPerformed
+        Player.values()[Player.values().length - 1].setAI(true);
+    }//GEN-LAST:event_aiToggleActionPerformed
 
     /**
      * @param args the command line arguments
