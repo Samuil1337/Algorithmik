@@ -6,7 +6,9 @@ package me.petrov.algorithmik.tictactoe;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;
+import java.util.Arrays;
 import java.util.Hashtable;
+import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.AbstractAction;
 import javax.swing.Action;
 import javax.swing.ActionMap;
@@ -282,20 +284,26 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
      * Sets the #gameState variable and manipulates the game accordingly.
      * @param gameState The new GameState
      */
-    private void setGameState(GameState gameState) {
+    private void setGameState(GameState newState) {
         // prevent NPE
-        if (gameState == null) {
-            return;
-        }
-        // makes sure you can't end the game again while its ended and the other way around
-        if (this.gameState.isGameOver() == gameState.isGameOver()) {
+        if (newState == null) {
             return;
         }
         
-        this.gameState = gameState;
+        if (gameState == GameState.RUNNING && newState == GameState.RUNNING) {
+            setCurrentPlayer(currentPlayer.nextPlayer());
+            return;
+        }
+        
+        // makes sure you can't end the game again while its ended and the other way around
+        if (gameState.isGameOver() == newState.isGameOver()) {
+            return;
+        }
+        
+        gameState = newState;
         
         // execute action according to new GameState
-        switch (gameState) {
+        switch (newState) {
             case RUNNING -> {
                 startNewGame();
                 return;
@@ -303,7 +311,7 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
             case FIRST_WIN -> Player.FIRST.incrementWins();
             case SECOND_WIN -> Player.SECOND.incrementWins();
         }
-        endGame(gameState.getMessage());
+        endGame(newState.getMessage());
     }
     
     /**
@@ -311,15 +319,47 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
      */
     private void startNewGame() {
         // reset fields
+        freeFields();
         for (JButton[] squareRow : this.squares) {
             for (JButton square : squareRow) {
-                square.setEnabled(true);
                 square.setText("");
             }
         }
         
         // reset game state
-        this.currentPlayer = Player.FIRST;
+        setCurrentPlayer(Player.FIRST);
+    }
+    
+    private void setCurrentPlayer(Player newCurrentPlayer) {
+        currentPlayer = newCurrentPlayer;
+        
+        if(!newCurrentPlayer.isAI()) {
+            return;
+        }
+        
+        blockFields();
+        
+        JButton aiAction = generateAIAction(); 
+        aiAction.setEnabled(true);
+        aiAction.doClick();
+        
+        freeFields();
+    }
+    
+    private void blockFields() {
+        for (JButton[] squareRow : this.squares) {
+            for (JButton square : squareRow) {
+                square.setEnabled(false);
+            }
+        }
+    }
+    
+    private void freeFields() {
+        for (JButton[] squareRow : this.squares) {
+            for (JButton square : squareRow) {
+                square.setEnabled(true);
+            }
+        }
     }
     
     /**
@@ -328,14 +368,36 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
      */
     private void endGame(String message) {
         // disable all buttons to prevent modification after ending
-        for (JButton[] squareRow : this.squares) {
-            for (JButton square : squareRow) {
-                square.setEnabled(false);
-            }
-        }
+        blockFields();
         JOptionPane.showMessageDialog(rootPane, message, "Game Over!", JOptionPane.INFORMATION_MESSAGE);
         // state is only set after dialog is closed
         setGameState(GameState.RUNNING);
+    }
+    
+    private JButton generateAIAction() {
+        return switch(aiDifficulty) {
+            case EASY -> easyAIAction();
+            case MEDIUM -> mediumAIAction();
+            case HARD -> hardAIAction();
+        };
+    }
+    
+    private JButton easyAIAction() {
+        JButton[] clickableButtons = Arrays.stream(squares)
+                .flatMap(Arrays::stream)
+                .filter(b -> b.getText().isEmpty())
+                .toArray(JButton[]::new);
+        
+        int randomIndex = ThreadLocalRandom.current().nextInt(clickableButtons.length);
+        return clickableButtons[randomIndex];
+    }
+    
+    private JButton mediumAIAction() {
+        return easyAIAction();
+    }
+    
+    private JButton hardAIAction() {
+        return easyAIAction();
     }
     
     /**
@@ -349,9 +411,6 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
         
         // select button
         square.setText(String.valueOf(currentPlayer.getSymbol()));
-        
-        // switch player
-        currentPlayer = currentPlayer.nextPlayer();
         
         // check if win condition met
         setGameState(checkGameState());
@@ -870,7 +929,10 @@ public class TicTacToeJFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_aiDifficultySliderStateChanged
 
     private void aiToggleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aiToggleActionPerformed
-        Player.values()[Player.values().length - 1].setAI(true);
+        //Player aiPlayer = Player.values()[Player.values().length - 1];
+        Player aiPlayer = Player.FIRST;
+        aiPlayer.setAI(!aiPlayer.isAI());
+        setCurrentPlayer(currentPlayer);
     }//GEN-LAST:event_aiToggleActionPerformed
 
     /**
