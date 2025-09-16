@@ -6,7 +6,7 @@ package me.petrov.algorithmik.arrayler;
 
 /**
  *
- * @author Jonkler
+ * @author Samuil Petrov
  */
 public class RangerJFrame extends javax.swing.JFrame {
     
