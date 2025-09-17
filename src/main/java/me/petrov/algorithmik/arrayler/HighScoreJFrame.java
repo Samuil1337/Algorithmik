@@ -157,7 +157,26 @@ public class HighScoreJFrame extends javax.swing.JFrame {
             return;
         }
         
-        System.out.println(value);
+        if (value < 0) {
+            resultLabel.setText("Input may not be negative!");
+            return;
+        }
+        
+        for (int i = 0; i < scores.length; i++) {
+            // search for the place for the new value
+            if (scores[i] <= value) {
+                continue;
+            }
+            // move all the elements after the place to make room
+            for (int j = scores.length - 1; j > i; j--) {
+                scores[j] = scores[j - 1];
+            }
+            // set the value on the found place
+            scores[i] = value;
+            break;
+        }
+        
+        updateScoresArrayDisplay();
     }//GEN-LAST:event_addButtonActionPerformed
 
     /**
