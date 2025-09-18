@@ -107,6 +107,7 @@
     <Component class="javax.swing.JTextField" name="guessInput">
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="guessInputActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="guessInputKeyPressed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="guessLabel">
@@ -170,6 +171,7 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="resetButtonActionPerformed"/>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="resetButtonKeyPressed"/>
       </Events>
     </Component>
   </SubComponents>

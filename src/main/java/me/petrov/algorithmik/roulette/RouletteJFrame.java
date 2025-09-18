@@ -4,6 +4,8 @@
  */
 package me.petrov.algorithmik.roulette;
 
+import java.awt.event.KeyEvent;
+
 /**
  *
  * @author Jonkler
@@ -31,6 +33,7 @@ public class RouletteJFrame extends javax.swing.JFrame {
         this.numberToGuess = (int) (Math.random() * 100 + 1);
         
         // reset UI
+        guessInput.requestFocusInWindow();
         guessInput.setText("");
         checkGuessButton.setEnabled(true);
         guessResultLabel.setText("N/A");
@@ -52,8 +55,9 @@ public class RouletteJFrame extends javax.swing.JFrame {
     
     private void endGame() {
         checkGuessButton.setEnabled(false);
+        resetButton.requestFocusInWindow();
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,6 +92,11 @@ public class RouletteJFrame extends javax.swing.JFrame {
                 guessInputActionPerformed(evt);
             }
         });
+        guessInput.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                guessInputKeyPressed(evt);
+            }
+        });
 
         guessLabel.setFont(new java.awt.Font("Comic Sans MS", 0, 18)); // NOI18N
         guessLabel.setText("Your guess");
@@ -118,6 +127,11 @@ public class RouletteJFrame extends javax.swing.JFrame {
         resetButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 resetButtonActionPerformed(evt);
+            }
+        });
+        resetButton.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                resetButtonKeyPressed(evt);
             }
         });
 
@@ -220,6 +234,18 @@ public class RouletteJFrame extends javax.swing.JFrame {
     private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
         this.startNewGame();
     }//GEN-LAST:event_resetButtonActionPerformed
+
+    private void guessInputKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_guessInputKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            checkGuessButton.doClick();
+        }
+    }//GEN-LAST:event_guessInputKeyPressed
+
+    private void resetButtonKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_resetButtonKeyPressed
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            resetButton.doClick();
+        }
+    }//GEN-LAST:event_resetButtonKeyPressed
     
     /**
      * @param args the command line arguments
