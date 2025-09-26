@@ -5,6 +5,7 @@
 package me.petrov.algorithmik.sorter;
 
 import java.util.Arrays;
+import java.util.Random;
 
 /**
  *
@@ -78,6 +79,10 @@ public class Sorter {
     }
     
     public static String getBestSorterOnAverage() {
+        return getBestSorterOnAverage(new Random());
+    }
+    
+    public static String getBestSorterOnAverage(Random random) {
         // create original array
         int[][] selectionSortArray = new int[5][];
         for (int i = 0; i < selectionSortArray.length; i++) {
@@ -86,7 +91,7 @@ public class Sorter {
         // fill original array with random numbers
         for (int i = 0; i < selectionSortArray.length; i++) {
             for (int j = 0; j < selectionSortArray[i].length; j++) {
-                selectionSortArray[i][j] = (int) (Math.random() * Integer.MAX_VALUE);
+                selectionSortArray[i][j] = random.nextInt(Integer.MIN_VALUE, Integer.MAX_VALUE);
             }
         }
         // create deep copy of original array
