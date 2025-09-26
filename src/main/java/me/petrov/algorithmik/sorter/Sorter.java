@@ -41,28 +41,12 @@ public class Sorter {
         return numbers;
     }
     
-    public static int[] insertSortEnhanced(int[] numbers) {
-        // = { 2, 6, 3, 7, 1, 5 };
-        int n = numbers.length;
-        for (int i = 1; i < n; i++) {
-            int element = numbers[i];
-            int j = i - 1;
-            while (j >= 0 && numbers[j] > element) {
-                numbers[j + 1] = numbers[j];
-                j--;
-            }
-            numbers[j + 1] = element;
-        }
-        
-        return numbers;
-    }
-    
     public static int[] selectionSort(int[] numbers) {
         compareCounter = 0;
         for (int i = numbers.length - 1; i > 0; i--) {
             int maxIndex = 0;
             int max = numbers[maxIndex];
-            for (int j = 0; j <= i; j++) {
+            for (int j = 1; j <= i; j++) {
                 if (numbers[j] > max) {
                     maxIndex = j;
                     max = numbers[maxIndex];
