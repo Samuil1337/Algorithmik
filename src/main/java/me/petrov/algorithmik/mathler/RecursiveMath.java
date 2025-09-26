@@ -63,7 +63,13 @@ public class RecursiveMath {
         return gcd(b, a % b);
     }
     
-    public static String stringMinusOne(String s) {
+    /**
+     * Removes the first character from a given string.
+     * 
+     * @param s the input string
+     * @return a new string with the first character removed
+     */
+    public static String removeFirstCharacter(String s) {
         String result = "";
         for (int i = 1; i < s.length(); i++) {
             result += s.charAt(i);
@@ -71,15 +77,25 @@ public class RecursiveMath {
         return result;
     }
     
-    private static double decimalNum = 0;
+    private static int decimalNum = 0;
+    /**
+     * Converts a binary string to its decimal equivalent.
+     * 
+     * This method uses a recursive approach
+     * to process the binary string from left to right.
+     * 
+     * @param dual a string representing a binary number
+     * @return the decimal equivalent of the input binary string
+     */
     public static int decimal(String dual) {
         if (dual.length() > 0) {
             decimalNum *= 2;
             if (dual.charAt(0) == '1') {
                 decimalNum += 1;
             }
-            return decimal(stringMinusOne(dual));
+            return decimal(removeFirstCharacter(dual));
         }
+        return decimalNum;
     }
     
 }
