@@ -12,12 +12,19 @@ package me.petrov.algorithmik.data_structures;
 public class Queue<E> {
     private Element<E> head = null;
     private Element<E> tail = null;
+    private long size = 0;
     
     public boolean isEmpty() {
         return head == null;
     }
     
+    public long size() {
+        return size;
+    }
+    
     public void enqueue(E value) {
+        size++;
+        
         if (isEmpty()) {
             head = tail = new Element<>(value);
             return;
@@ -43,6 +50,7 @@ public class Queue<E> {
         head = head.getNext();
         if (isEmpty()) tail = null;
         
+        size--;
         return value;
     }
     

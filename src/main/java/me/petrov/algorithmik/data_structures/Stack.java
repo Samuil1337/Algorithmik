@@ -11,21 +11,30 @@ package me.petrov.algorithmik.data_structures;
  */
 public class Stack<E> {
     private Element<E> top = null;
+    private long size = 0;
     
     public boolean isEmpty() {
         return top == null;
     }
     
+    public long size() {
+        return size;
+    }
+    
     public void push(E value) {
         top = new Element<>(value, top);
+        size++;
     }
     
     public E pop() {
         if (isEmpty()) {
             return null;
         }
+
         E value = top.getValue();
         top = top.getNext();
+        size--;
+        
         return value;
     }
     
