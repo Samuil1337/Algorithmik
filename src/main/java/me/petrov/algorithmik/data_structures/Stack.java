@@ -4,6 +4,9 @@
  */
 package me.petrov.algorithmik.data_structures;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
  * Simple LIFO stack implementation.
  * 
@@ -11,7 +14,7 @@ package me.petrov.algorithmik.data_structures;
  * @param <E> The data type to store on the Stack
  * @see me.petrov.algorithmik.data_structures.Element
  */
-public class Stack<E> {
+public class Stack<E> implements Iterable<E> {
     private Element<E> top = null;
     private long size = 0;
     
@@ -62,5 +65,41 @@ public class Stack<E> {
      */
     public E peek() {
         return !isEmpty() ? top.getValue() : null;
+    }
+    
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[ ");
+        for (E element : this) {
+            sb.append(element).append(" ");
+        }
+        return sb.append("]").toString();
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new StackIterator();
+    }
+    
+    private class StackIterator implements Iterator<E> {
+        private Element<E> current = top;
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public E next() {
+            if (current == null) {
+                throw new NoSuchElementException();
+            }
+            
+            E value = current.getValue();
+            current = current.getNext();
+            return value;
+        }
+        
     }
 }
