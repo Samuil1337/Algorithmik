@@ -5,12 +5,16 @@
 package me.petrov.algorithmik.data_structures;
 
 /**
+ * A simple element for dynamic data structures.
+ * Contains a value and links to the next item.
  * 
  * @author Samuil Petrov
  * @param <E> The data type of the element to store
  */
 class Element<E> {
+    /** The value of the element */
     private final E value;
+    /** The pointer to its successor */
     private Element<E> next;
     
     public Element(E value) {

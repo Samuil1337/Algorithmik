@@ -5,27 +5,45 @@
 package me.petrov.algorithmik.data_structures;
 
 /**
- *
+ * Simple LIFO stack implementation.
+ * 
  * @author Samuil Petrov
  * @param <E> The data type to store on the Stack
+ * @see me.petrov.algorithmik.data_structures.Element
  */
 public class Stack<E> {
     private Element<E> top = null;
     private long size = 0;
     
+    /**
+     * Checks whether there are elements on the stack.
+     * @return true if empty, false if at least one item is present
+     */
     public boolean isEmpty() {
         return top == null;
     }
     
+    /**
+     * Returns the amount of items on the stack.
+     * @return The amount of items in the collection
+     */
     public long size() {
         return size;
     }
     
+    /**
+     * Puts the given value on top of the stack.
+     * @param value The value to put
+     */
     public void push(E value) {
         top = new Element<>(value, top);
         size++;
     }
     
+    /**
+     * Removes the element on top of the stack and provides its value.
+     * @return The value of the top element or null if the stack is empty
+     */
     public E pop() {
         if (isEmpty()) {
             return null;
@@ -38,6 +56,10 @@ public class Stack<E> {
         return value;
     }
     
+    /**
+     * Returns the element in top of the stack.
+     * @return The value of the top element or null if the stack is empty
+     */
     public E peek() {
         return !isEmpty() ? top.getValue() : null;
     }
