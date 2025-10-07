@@ -29,7 +29,7 @@ public class Stack<E> {
         return value;
     }
     
-    public E top() {
+    public E peek() {
         return !isEmpty() ? top.getValue() : null;
     }
 }

@@ -9,7 +9,7 @@ package me.petrov.algorithmik.data_structures;
  * @author Samuil Petrov
  * @param <E> The data type of the element to store
  */
-public class Element<E> {
+class Element<E> {
     private final E value;
     private Element<E> next;
     
