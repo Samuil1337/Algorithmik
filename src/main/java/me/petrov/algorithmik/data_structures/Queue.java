@@ -14,10 +14,16 @@ import java.util.NoSuchElementException;
  * @param <E> The data type to store in the Queue
  * @see me.petrov.algorithmik.data_structures.Element
  */
-public class Queue<E> implements Iterable<E> {
+public final class Queue<E> implements Iterable<E> {
     private Element<E> head = null;
     private Element<E> tail = null;
     private long size = 0;
+    
+    public Queue(E... values) {
+        for (E value : values) {
+            enqueue(value);
+        }
+    }
     
     /**
      * Checks whether there are elements in the queue.

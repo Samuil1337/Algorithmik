@@ -14,9 +14,15 @@ import java.util.NoSuchElementException;
  * @param <E> The data type to store on the Stack
  * @see me.petrov.algorithmik.data_structures.Element
  */
-public class Stack<E> implements Iterable<E> {
+public final class Stack<E> implements Iterable<E> {
     private Element<E> top = null;
     private long size = 0;
+    
+    public Stack(E... values) {
+        for (E value : values) {
+            push(value);
+        }
+    }
     
     /**
      * Checks whether there are elements on the stack.
