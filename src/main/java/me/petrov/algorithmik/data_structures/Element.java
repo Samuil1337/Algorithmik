@@ -5,27 +5,32 @@
 package me.petrov.algorithmik.data_structures;
 
 /**
- *
- * @author samuil.petrov
+ * 
+ * @author Samuil Petrov
+ * @param <E> The data type of the element to store
  */
 public class Element<E> {
-    final E value;
-    private Element<E> successor;
+    private final E value;
+    private Element<E> next;
     
     public Element(E value) {
         this.value = value;
     }
     
-    public Element(E value, Element<E> successor) {
+    public Element(E value, Element<E> next) {
         this.value = value;
-        this.successor = successor;
+        this.next = next;
     }
     
-    public Element<E> getSuccessor() {
-        return successor;
+    public Element<E> getNext() {
+        return next;
     }
     
-    public void setSuccessor(Element<E> successor) {
-        this.successor = successor;
+    public void setNext(Element<E> next) {
+        this.next = next;
+    }
+    
+    public E getValue() {
+        return value;
     }
 }

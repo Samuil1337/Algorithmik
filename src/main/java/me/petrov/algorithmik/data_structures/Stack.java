@@ -7,21 +7,29 @@ package me.petrov.algorithmik.data_structures;
 /**
  *
  * @author Samuil Petrov
+ * @param <E> The data type to store on the Stack
  */
-public class Stapel<E> {
+public class Stack<E> {
     private Element<E> top = null;
     
+    public boolean isEmpty() {
+        return top == null;
+    }
+    
     public void push(E value) {
-        top = new Element(value, top);
+        top = new Element<>(value, top);
     }
     
     public E pop() {
-        E value = top.value;
-        top = top.getSuccessor();
+        if (isEmpty()) {
+            return null;
+        }
+        E value = top.getValue();
+        top = top.getNext();
         return value;
     }
     
     public E top() {
-        return top.value;
+        return !isEmpty() ? top.getValue() : null;
     }
 }
