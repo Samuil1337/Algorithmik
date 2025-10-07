@@ -4,6 +4,9 @@
  */
 package me.petrov.algorithmik.data_structures;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
  * Simple FIFO queue implementation.
  * 
@@ -11,7 +14,7 @@ package me.petrov.algorithmik.data_structures;
  * @param <E> The data type to store in the Queue
  * @see me.petrov.algorithmik.data_structures.Element
  */
-public class Queue<E> {
+public class Queue<E> implements Iterable<E> {
     private Element<E> head = null;
     private Element<E> tail = null;
     private long size = 0;
@@ -78,5 +81,41 @@ public class Queue<E> {
      */
     public E peek() {
         return !isEmpty() ? head.getValue() : null;
+    }
+    
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("[ ");
+        for (E element : this) {
+            sb.append(element).append(" ");
+        }
+        return sb.append("]").toString();
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        return new QueueIterator();
+    }
+    
+    private class QueueIterator implements Iterator<E> {
+        private Element<E> current = head;
+
+        @Override
+        public boolean hasNext() {
+            return current != null;
+        }
+
+        @Override
+        public E next() {
+            if (current == null) {
+                throw new NoSuchElementException();
+            }
+            
+            E value = current.getValue();
+            current = current.getNext();
+            return value;
+        }
+        
     }
 }
