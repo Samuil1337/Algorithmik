@@ -11,26 +11,26 @@ package me.petrov.algorithmik.data_structures;
  * @author Samuil Petrov
  * @param <E> The data type of the element to store
  */
-class Element<E> {
+class SingleLinkNode<E> {
     /** The value of the element */
     private final E value;
     /** The pointer to its successor */
-    private Element<E> next;
+    private SingleLinkNode<E> next;
     
-    public Element(E value) {
+    public SingleLinkNode(E value) {
         this.value = value;
     }
     
-    public Element(E value, Element<E> next) {
+    public SingleLinkNode(E value, SingleLinkNode<E> next) {
         this.value = value;
         this.next = next;
     }
     
-    public Element<E> getNext() {
+    public SingleLinkNode<E> getNext() {
         return next;
     }
     
-    public void setNext(Element<E> next) {
+    public void setNext(SingleLinkNode<E> next) {
         this.next = next;
     }
     

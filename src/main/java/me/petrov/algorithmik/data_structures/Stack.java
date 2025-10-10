@@ -12,10 +12,10 @@ import java.util.NoSuchElementException;
  * 
  * @author Samuil Petrov
  * @param <E> The data type to store on the Stack
- * @see me.petrov.algorithmik.data_structures.Element
+ * @see me.petrov.algorithmik.data_structures.SingleLinkNode
  */
 public final class Stack<E> implements Iterable<E> {
-    private Element<E> top = null;
+    private SingleLinkNode<E> top = null;
     private long size = 0;
     
     public Stack(E... values) {
@@ -45,7 +45,7 @@ public final class Stack<E> implements Iterable<E> {
      * @param value The value to put
      */
     public void push(E value) {
-        top = new Element<>(value, top);
+        top = new SingleLinkNode<>(value, top);
         size++;
     }
     
@@ -89,7 +89,7 @@ public final class Stack<E> implements Iterable<E> {
     }
     
     private class StackIterator implements Iterator<E> {
-        private Element<E> current = top;
+        private SingleLinkNode<E> current = top;
 
         @Override
         public boolean hasNext() {

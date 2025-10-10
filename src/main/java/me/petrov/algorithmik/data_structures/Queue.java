@@ -12,11 +12,11 @@ import java.util.NoSuchElementException;
  * 
  * @author Samuil Petrov
  * @param <E> The data type to store in the Queue
- * @see me.petrov.algorithmik.data_structures.Element
+ * @see me.petrov.algorithmik.data_structures.SingleLinkNode
  */
 public final class Queue<E> implements Iterable<E> {
-    private Element<E> head = null;
-    private Element<E> tail = null;
+    private SingleLinkNode<E> head = null;
+    private SingleLinkNode<E> tail = null;
     private long size = 0;
     
     public Queue(E... values) {
@@ -49,18 +49,18 @@ public final class Queue<E> implements Iterable<E> {
         size++;
         
         if (isEmpty()) {
-            head = tail = new Element<>(value);
+            head = tail = new SingleLinkNode<>(value);
             return;
         }
         
         /*
-        Element<E> tail = head;
+        SingleLinkNode<E> tail = head;
         while (tail.getNext() != null) {
             tail = tail.getNext();
         }
         */
         
-        tail.setNext(new Element<>(value));
+        tail.setNext(new SingleLinkNode<>(value));
         tail = tail.getNext();
     }
     
@@ -105,7 +105,7 @@ public final class Queue<E> implements Iterable<E> {
     }
     
     private class QueueIterator implements Iterator<E> {
-        private Element<E> current = head;
+        private SingleLinkNode<E> current = head;
 
         @Override
         public boolean hasNext() {
