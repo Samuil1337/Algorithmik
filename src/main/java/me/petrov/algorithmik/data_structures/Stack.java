@@ -75,11 +75,8 @@ public final class Stack<E> implements Iterable<E> {
     
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("[ ");
-        for (E element : this) {
-            sb.append(element).append(" ");
-        }
+        StringBuilder sb = new StringBuilder("[ ");
+        forEach(element -> sb.append(element).append(" "));
         return sb.append("]").toString();
     }
 
