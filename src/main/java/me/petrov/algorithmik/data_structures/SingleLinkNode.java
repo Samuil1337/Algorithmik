@@ -13,7 +13,7 @@ package me.petrov.algorithmik.data_structures;
  */
 class SingleLinkNode<E> {
     /** The value of the element */
-    private final E value;
+    private E value;
     /** The pointer to its successor */
     private SingleLinkNode<E> next;
     
@@ -25,6 +25,14 @@ class SingleLinkNode<E> {
         this.value = value;
         this.next = next;
     }
+ 
+    public E getValue() {
+        return value;
+    }
+    
+    public void setValue(E value) {
+        this.value = value;
+    }
     
     public SingleLinkNode<E> getNext() {
         return next;
@@ -33,8 +41,5 @@ class SingleLinkNode<E> {
     public void setNext(SingleLinkNode<E> next) {
         this.next = next;
     }
-    
-    public E getValue() {
-        return value;
-    }
+ 
 }
